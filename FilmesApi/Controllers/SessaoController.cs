@@ -45,7 +45,7 @@ namespace FilmesApi.Controllers
 
                 return Ok(sessaoDto);
             }
-            return NotFound();
+            return NotFound("Sessão não encontrada.");
         }
     }
 }

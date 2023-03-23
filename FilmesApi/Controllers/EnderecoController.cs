@@ -19,12 +19,6 @@ namespace FilmesApi.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// Adiciona um endereco ao banco de dados
-        /// </summary>
-        /// <param name="enderecoDto">Objeto com os campos necessários para criação de um endereco</param>
-        /// <returns>IActionResult</returns>
-        /// <response code="201">Caso inserção seja feita com sucesso</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult AdicionaEndereco(
@@ -37,15 +31,8 @@ namespace FilmesApi.Controllers
                 new { id = endereco.Id },
                 enderecoDto);
         }
-        /// <summary>
-        /// Retorna uma lista de endereços
-        /// </summary>
-        /// <param name="skip"></param>
-        /// <param name="take"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK)]
 
+        [HttpGet]
         public IEnumerable<ReadEnderecoDTO> RecuperaEnderecos([FromQuery] int skip = 0,
             [FromQuery] int take = 50)
         {
@@ -57,7 +44,7 @@ namespace FilmesApi.Controllers
         {
             var endereco = _context.Enderecos
                 .FirstOrDefault(endereco => endereco.Id == id);
-            if (endereco == null) return NotFound();
+            if (endereco == null) return NotFound("Endereço não encontrado.");
             var enderecoDto = _mapper.Map<ReadEnderecoDTO>(endereco);
             return Ok(enderecoDto);
         }
@@ -68,7 +55,7 @@ namespace FilmesApi.Controllers
         {
             var endereco = _context.Enderecos.FirstOrDefault(
                 endereco => endereco.Id == id);
-            if (endereco == null) return NotFound();
+            if (endereco == null) return NotFound("Endereço não encontrado.");
             _mapper.Map(enderecoDto, endereco);
             _context.SaveChanges();
             return Ok("Endereço alterado com sucesso.");
@@ -79,7 +66,7 @@ namespace FilmesApi.Controllers
         {
             var endereco = _context.Enderecos.FirstOrDefault(
                 endereco => endereco.Id == id);
-            if (endereco == null) return NotFound();
+            if (endereco == null) return NotFound("Endereço não encontrado.");
             _context.Remove(endereco);
             _context.SaveChanges();
             return Ok("Endereço deletado com sucesso.");

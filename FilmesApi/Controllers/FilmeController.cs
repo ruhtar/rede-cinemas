@@ -46,7 +46,7 @@ public class FilmeController : ControllerBase
     {
         var filme = _context.Filmes
             .FirstOrDefault(filme => filme.Id == id);
-        if (filme == null) return NotFound();
+        if (filme == null) return NotFound("Filme não encontrado.");
         var filmeDto = _mapper.Map<ReadFilmeDto>(filme);
         return Ok(filmeDto);
     }
@@ -57,7 +57,7 @@ public class FilmeController : ControllerBase
     {
         var filme = _context.Filmes.FirstOrDefault(
             filme => filme.Id == id);
-        if (filme == null) return NotFound();
+        if (filme == null) return NotFound("Filme não encontrado.");
         _mapper.Map(filmeDto, filme);
         _context.SaveChanges();
         return Ok("Filme editado com sucesso");
@@ -69,7 +69,7 @@ public class FilmeController : ControllerBase
     {
         var filme = _context.Filmes.FirstOrDefault(
             filme => filme.Id == id);
-        if (filme == null) return NotFound();
+        if (filme == null) return NotFound("Filme não encontrado.");
         _context.Remove(filme);
         _context.SaveChanges();
         return Ok("Filme deletado com sucesso");

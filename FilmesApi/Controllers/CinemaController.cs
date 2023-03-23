@@ -20,12 +20,6 @@ namespace CinemasApi.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// Adiciona um cinema ao banco de dados
-        /// </summary>
-        /// <param name="cinemaDto">Objeto com os campos necessários para criação de um cinema</param>
-        /// <returns>IActionResult</returns>
-        /// <response code="201">Caso inserção seja feita com sucesso</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult AdicionaCinema(
@@ -36,9 +30,9 @@ namespace CinemasApi.Controllers
             _context.SaveChanges();
             return CreatedAtAction(nameof(RecuperaCinemaPorId),
                 new { id = cinema.Id },
-                cinema);
+                cinemaDto);
         }
-        //sumary
+
         [HttpGet]
         public List<ReadCinemaDTO> RecuperaCinemas()
         {
@@ -50,7 +44,7 @@ namespace CinemasApi.Controllers
         {
             var cinema = _context.Cinemas
                 .FirstOrDefault(cinema => cinema.Id == id);
-            if (cinema == null) return NotFound();
+            if (cinema == null) return NotFound("Cinema não encontrado.");
             var cinemaDto = _mapper.Map<ReadCinemaDTO>(cinema);
             return Ok(cinemaDto);
         }
@@ -61,7 +55,7 @@ namespace CinemasApi.Controllers
         {
             var cinema = _context.Cinemas.FirstOrDefault(
                 cinema => cinema.Id == id);
-            if (cinema == null) return NotFound();
+            if (cinema == null) return NotFound("Cinema não encontrado.");
             _mapper.Map(cinemaDto, cinema);
             _context.SaveChanges();
             return Ok("Cinema alterado com sucesso.");
@@ -72,7 +66,7 @@ namespace CinemasApi.Controllers
         {
             var cinema = _context.Cinemas.FirstOrDefault(
                 cinema => cinema.Id == id);
-            if (cinema == null) return NotFound();
+            if (cinema == null) return NotFound("Cinema não encontrado.");
             _context.Remove(cinema);
             int changes = _context.SaveChanges();
             return Ok("Cinema deletado com sucesso.");

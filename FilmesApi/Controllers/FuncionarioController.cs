@@ -44,7 +44,7 @@ namespace FilmesApi.Controllers
         {
             var funcionario = _context.Funcionarios
                 .FirstOrDefault(funcionario => funcionario.Id == id);
-            if (funcionario == null) return NotFound();
+            if (funcionario == null) return NotFound("Funcionário não encontrado.");
             var funcionarioDto = _mapper.Map<ReadFuncionarioDTO>(funcionario);
             return Ok(funcionarioDto);
         }
@@ -55,7 +55,7 @@ namespace FilmesApi.Controllers
         {
             var funcionario = _context.Funcionarios.FirstOrDefault(
                 funcionario => funcionario.Id == id);
-            if (funcionario == null) return NotFound();
+            if (funcionario == null) return NotFound("Funcionário não encontrado.");
             _mapper.Map(funcionarioDto, funcionario);
             _context.SaveChanges();
             return Ok("Funcionário alterado com sucesso.");
@@ -66,7 +66,7 @@ namespace FilmesApi.Controllers
         {
             var funcionario = _context.Funcionarios.FirstOrDefault(
                 funcionario => funcionario.Id == id);
-            if (funcionario == null) return NotFound();
+            if (funcionario == null) return NotFound("Funcionário não encontrado.");
             _context.Remove(funcionario);
             _context.SaveChanges();
             return Ok("Funcionário deletado com sucesso.");
