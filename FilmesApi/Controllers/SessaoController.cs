@@ -47,5 +47,16 @@ namespace FilmesApi.Controllers
             }
             return NotFound("Sessão não encontrada.");
         }
+
+        [HttpDelete("{cinemaId}/{filmeId}")]
+        public IActionResult DeletaSessao([FromRoute] int cinemaId, [FromRoute] int filmeId)
+        {
+            var sessao = _context.Sessoes
+                .FirstOrDefault(e => e.CinemaId == cinemaId && e.FilmeId == filmeId);
+            if (sessao == null) return NotFound("Sessão não encontrada.");
+            _context.Remove(sessao);
+            _context.SaveChanges();
+            return Ok("Sessão deletada com sucesso.");
+        }
     }
 }
