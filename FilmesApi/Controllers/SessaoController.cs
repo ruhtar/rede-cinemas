@@ -21,6 +21,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public IActionResult AdicionaSessao(CreateSessaoDTO dto)
         {
             Sessao sessao = _mapper.Map<Sessao>(dto);
@@ -36,7 +37,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpGet("{filmeId}/{cinemaId}")]
-        public IActionResult RecuperaSessoesPorId(int filmeId, int cinemaId)
+        public IActionResult RecuperaSessoesPorId([FromRoute] int filmeId, [FromRoute] int cinemaId)
         {
             Sessao? sessao = _context.Sessoes.FirstOrDefault(sessao => sessao.FilmeId == filmeId && sessao.CinemaId == cinemaId);
             if (sessao != null)

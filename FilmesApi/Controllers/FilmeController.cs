@@ -42,7 +42,7 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult RecuperaFilmePorId(int id)
+    public IActionResult RecuperaFilmePorId([FromRoute] int id)
     {
         var filme = _context.Filmes
             .FirstOrDefault(filme => filme.Id == id);
@@ -52,7 +52,7 @@ public class FilmeController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult AtualizaFilme(int id,
+    public IActionResult AtualizaFilme([FromRoute] int id,
         [FromBody] UpdateFilmeDto filmeDto)
     {
         var filme = _context.Filmes.FirstOrDefault(
@@ -65,7 +65,7 @@ public class FilmeController : ControllerBase
 
 
     [HttpDelete("{id}")]
-    public IActionResult DeletaFilme(int id)
+    public IActionResult DeletaFilme([FromRoute] int id)
     {
         var filme = _context.Filmes.FirstOrDefault(
             filme => filme.Id == id);

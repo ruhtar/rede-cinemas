@@ -40,7 +40,7 @@ namespace CinemasApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperaCinemaPorId(int id)
+        public IActionResult RecuperaCinemaPorId([FromRoute] int id)
         {
             var cinema = _context.Cinemas
                 .FirstOrDefault(cinema => cinema.Id == id);
@@ -50,7 +50,7 @@ namespace CinemasApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaCinema(int id,
+        public IActionResult AtualizaCinema([FromRoute] int id,
             [FromBody] UpdateCinemaDTO cinemaDto)
         {
             var cinema = _context.Cinemas.FirstOrDefault(
@@ -62,7 +62,7 @@ namespace CinemasApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletaCinema(int id)
+        public IActionResult DeletaCinema([FromRoute] int id)
         {
             var cinema = _context.Cinemas.FirstOrDefault(
                 cinema => cinema.Id == id);

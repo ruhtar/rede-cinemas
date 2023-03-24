@@ -40,7 +40,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperaFuncionarioPorId(int id)
+        public IActionResult RecuperaFuncionarioPorId([FromRoute] int id)
         {
             var funcionario = _context.Funcionarios
                 .FirstOrDefault(funcionario => funcionario.Id == id);
@@ -50,7 +50,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaFuncionario(int id,
+        public IActionResult AtualizaFuncionario([FromRoute] int id,
             [FromBody] UpdateFuncionarioDTO funcionarioDto)
         {
             var funcionario = _context.Funcionarios.FirstOrDefault(
@@ -62,7 +62,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletaFuncionario(int id)
+        public IActionResult DeletaFuncionario([FromRoute] int id)
         {
             var funcionario = _context.Funcionarios.FirstOrDefault(
                 funcionario => funcionario.Id == id);

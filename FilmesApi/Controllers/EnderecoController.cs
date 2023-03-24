@@ -40,7 +40,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult RecuperaEnderecoPorId(int id)
+        public IActionResult RecuperaEnderecoPorId([FromRoute] int id)
         {
             var endereco = _context.Enderecos
                 .FirstOrDefault(endereco => endereco.Id == id);
@@ -50,7 +50,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult AtualizaEndereco(int id,
+        public IActionResult AtualizaEndereco([FromRoute] int id,
             [FromBody] UpdateEnderecoDTO enderecoDto)
         {
             var endereco = _context.Enderecos.FirstOrDefault(
@@ -62,7 +62,7 @@ namespace FilmesApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletaEndereco(int id)
+        public IActionResult DeletaEndereco([FromRoute] int id)
         {
             var endereco = _context.Enderecos.FirstOrDefault(
                 endereco => endereco.Id == id);
