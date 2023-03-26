@@ -25,7 +25,7 @@ namespace CinemasApi.Controllers
         public IActionResult AdicionaCinema(
             [FromBody] CreateCinemaDTO cinemaDto)
         {
-            Cinema cinema = _mapper.Map<Cinema>(cinemaDto);
+            var cinema = _mapper.Map<Cinema>(cinemaDto);
             _context.Cinemas.Add(cinema);
             _context.SaveChanges();
             return CreatedAtAction(nameof(RecuperaCinemaPorId),

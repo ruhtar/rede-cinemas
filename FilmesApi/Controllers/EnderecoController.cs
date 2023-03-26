@@ -24,7 +24,7 @@ namespace FilmesApi.Controllers
         public IActionResult AdicionaEndereco(
             [FromBody] CreateEnderecoDTO enderecoDto)
         {
-            Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
+            var endereco = _mapper.Map<Endereco>(enderecoDto);
             _context.Enderecos.Add(endereco);
             _context.SaveChanges();
             return CreatedAtAction(nameof(RecuperaEnderecoPorId),
