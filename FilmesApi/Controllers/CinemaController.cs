@@ -68,7 +68,7 @@ namespace CinemasApi.Controllers
                 cinema => cinema.Id == id);
             if (cinema == null) return NotFound("Cinema não encontrado.");
             _context.Remove(cinema);
-            int changes = _context.SaveChanges();
+            _context.SaveChanges();
             return Ok("Cinema deletado com sucesso.");
         }
     }
