@@ -1,9 +1,11 @@
-﻿using FilmesApi.Models;
+﻿using CinemaAPI.Models;
+using FilmesApi.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
 namespace FilmesApi.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> opts)
         : base(opts)
@@ -24,6 +26,7 @@ public class ApplicationDbContext : DbContext
         .WithOne(i => i.Cinema)
         .HasForeignKey(i => i.CinemaId);
 
+        base.OnModelCreating(builder);
     }
 
     public DbSet<Filme> Filmes { get; set; }
@@ -31,6 +34,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Sessao> Sessoes { get; set; }
     public DbSet<Funcionario> Funcionarios { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
 
 }

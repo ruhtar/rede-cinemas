@@ -1,4 +1,5 @@
 using FilmesApi.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -9,8 +10,9 @@ var connectionString = builder.Configuration.GetConnectionString("FilmeConnectio
 
 builder.Services.AddDbContext<ApplicationDbContext>(opts =>
     opts.UseLazyLoadingProxies().UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-builder.Services.
-    AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.AddAuthentication();
 // Add services to the container.
 
 builder.Services.AddControllers().AddNewtonsoftJson();
@@ -34,7 +36,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
