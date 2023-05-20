@@ -2,10 +2,9 @@
 using FilmesApi.Data;
 using FilmesApi.Data.Dtos.SessaoDTOs;
 using FilmesApi.Models;
-using FilmesApi.Profiles;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FilmesApi.Controllers
+namespace CinemaAPI.Controllers
 {
     [ApiController]
     [Route("sessao")]

@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using FilmesApi.Data.Dtos.EnderecoDTOs;
 using FilmesApi.Data;
+using FilmesApi.Data.Dtos.EnderecoDTOs;
 using FilmesApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FilmesApi.Controllers
+namespace CinemaAPI.Controllers
 {
     [ApiController]
     [Route("endereco")]

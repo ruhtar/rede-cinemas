@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FilmesApi.Data;
-using Microsoft.AspNetCore.Mvc;
-using FilmesApi.Models;
 using FilmesApi.Infra.Dtos.FuncionarioDTOs;
+using FilmesApi.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace FilmesApi.Controllers
+namespace CinemaAPI.Controllers
 {
     [ApiController]
     [Route("funcionario")]
