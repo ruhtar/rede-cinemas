@@ -26,7 +26,8 @@ namespace CinemaAPI.Controllers
             var sessao = _mapper.Map<Sessao>(dto);
             _context.Sessoes.Add(sessao);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(RecuperaSessoesPorId), new { filmeId = sessao.FilmeId, cinemaId = sessao.CinemaId }, dto);
+            return CreatedAtAction(nameof(RecuperaSessoesPorId),
+                new { filmeId = sessao.FilmeId, cinemaId = sessao.CinemaId }, dto);
         }
 
         [HttpGet]
@@ -38,13 +39,15 @@ namespace CinemaAPI.Controllers
         [HttpGet("{filmeId}/{cinemaId}")]
         public IActionResult RecuperaSessoesPorId([FromRoute] int filmeId, [FromRoute] int cinemaId)
         {
-            var sessao = _context.Sessoes.FirstOrDefault(sessao => sessao.FilmeId == filmeId && sessao.CinemaId == cinemaId);
+            var sessao =
+                _context.Sessoes.FirstOrDefault(sessao => sessao.FilmeId == filmeId && sessao.CinemaId == cinemaId);
             if (sessao != null)
             {
                 ReadSessaoDTO sessaoDto = _mapper.Map<ReadSessaoDTO>(sessao);
 
                 return Ok(sessaoDto);
             }
+
             return NotFound("Sessão não encontrada.");
         }
 

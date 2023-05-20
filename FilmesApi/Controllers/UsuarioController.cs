@@ -21,9 +21,11 @@ namespace CinemaAPI.Controllers
             _context = context;
             _mapper = mapper;
         }
+
         [Route("cadastrar")]
         [HttpPost]
-        public IActionResult CadastrarUsuario([FromBody] CreateUsuarioDTO usuarioDTO) {
+        public IActionResult CadastrarUsuario([FromBody] CreateUsuarioDTO usuarioDTO)
+        {
             //var userRegistered = _userManager.FindByEmailAsync(usuarioDTO.Password);
             //if (userRegistered != null) return Conflict("Usuário já registrado."); //Status code: 409
             var usuarioModel = _mapper.Map<Usuario>(usuarioDTO);

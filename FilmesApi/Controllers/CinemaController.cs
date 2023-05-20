@@ -27,8 +27,7 @@ namespace CinemaAPI.Controllers
             var cinema = _mapper.Map<Cinema>(cinemaDto);
             _context.Cinemas.Add(cinema);
             _context.SaveChanges();
-            return CreatedAtAction(nameof(RecuperaCinemaPorId),
-                new { id = cinema.Id },
+            return CreatedAtAction(nameof(RecuperaCinemaPorId), new { d = cinema.Id },
                 cinemaDto);
         }
 

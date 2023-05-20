@@ -10,7 +10,6 @@ namespace CinemaAPI.Controllers;
 [Route("filmes")]
 public class FilmeController : ControllerBase
 {
-
     private ApplicationDbContext _context;
     private IMapper _mapper;
 
@@ -74,4 +73,3 @@ public class FilmeController : ControllerBase
         return Ok("Filme deletado com sucesso");
     }
 }
-        
